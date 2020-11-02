@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import UserForm, UserProfileInfoForm
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
@@ -15,7 +15,7 @@ def index(request):
 
 @login_required(login_url='basic_app:user_login')
 def profile(request):
-    user_profile_data = UserProfileInfo.objects.get(user = request.user)
+    user_profile_data = get_object_or_404(UserProfileInfo, user = request.user)
     context = {
         'portofolio':user_profile_data.portofolio_site,
         'profile_picture':user_profile_data.profile_pic,

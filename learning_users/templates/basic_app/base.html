@@ -22,7 +22,7 @@
                     <li class="active">
                         <a href="{% url 'admin:index' %}">Admin</a>
                     </li>
-                    {% if user.is_authenticated %}
+                    {% if user.is_authenticated and not user.is_superuser%}
                         <li>
                             <a href="{% url 'profile' %}" >Profile</a>
                         </li>
